@@ -1,19 +1,23 @@
-#thumbnail-bg{
-    background-color: #1C66BD;
+
+.caption .btn-cart{
+    color: white;
 }
 .caption strong{
-    color: white;
+    color: black;
+    text-align: center;
 }
 .price{
     float: right;
 }
 .caption span{
     font-size: 14px;
-    color: white;
+    color: black;
 }
 .caption{
     font-size: 16px;
-    text-align: left;
+}
+.caption .price_label{
+    float: left;
 }
 .more-button{
     margin-top: 4px;

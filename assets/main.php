@@ -88,6 +88,50 @@
     </div>
 </div>
 <hr>
+<!-- fuji -->
+<div class="row">
+    <div class="col-md-12"><!-- product row -->
+        <div class="row main-item-header"><!-- product header -->
+            <div class="col-md-12">
+                <div class="product-header pull-left">
+                    FUJI
+                </div>
+                <div class="more-button"> 
+                    <a href="index.php?product=dslr_fuji" class="btn btn-primary pull-right"><strong>more</strong><span class="glyphicon glyphicon-chevron-right"></span></a>
+                </div> 
+            </div>
+        </div><!-- end of product header -->
+        <div class="row"><!-- product-->
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12"><!-- product 1 -->
+                        <div class="thumbnail">
+                            <div class="caption">
+                                    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12"><!-- product 2 -->
+                        <div class="thumbnail">
+                                
+                            <div class="caption">
+                                    
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-md-4 col-sm-6 col-xs-12"><!-- product 3 -->
+                        <div class="thumbnail">
+                                
+                            <div class="caption">
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- nikon -->
 <div class="row">
     <div class="col-md-12"><!-- product row -->

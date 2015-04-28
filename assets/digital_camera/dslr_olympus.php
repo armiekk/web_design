@@ -12,7 +12,10 @@
                             <img src='".$row['pd_image']."' alt='".$row['img_alt']."'>
                             <div class='caption'>".
                               "<strong>".$row['pd_name']."</strong>".
-                                "<br><span><em> PRICE :</span></em><span class='price'>                                                                     <em>".number_format($row['pd_price'])." ฿.</em></span>"
+                                "<br><span class='price_label'><em> PRICE :</span></em><span class='price'>                                                                     <em>".number_format($row['pd_price'])." ฿.</em></span>
+                                <br>
+                                <a class='btn btn-primary pull-right'><strong class='btn-cart'>add to cart</strong></a>
+                                <br><br>"
             				."</div>
                         </div>
                 </div>";

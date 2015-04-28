@@ -106,16 +106,19 @@
                             $page = $_GET['product'];
                                 switch ($page){
                                     case "dslr_cannon":
-                                        include('assets/dslr/dslr_cannon.php');
+                                        include('assets/digital_camera/dslr_cannon.php');
+                                        break;
+                                    case "dslr_fuji":
+                                        include('assets/digital_camera/dslr_fuji.php');
                                         break;
                                     case "dslr_sony":
-                                        include('assets/dslr/dslr_sony.php');
+                                        include('assets/digital_camera/dslr_sony.php');
                                         break;
                                     case "dslr_nikon":
-                                        include('assets/dslr/dslr_nikon.php');
+                                        include('assets/digital_camera/dslr_nikon.php');
                                         break;
                                     case "dslr_olympus":
-                                        include('assets/dslr/dslr_olympus.php');
+                                        include('assets/digital_camera/dslr_olympus.php');
                                         break;
                                     default:
                                         include('assets/main.php');
