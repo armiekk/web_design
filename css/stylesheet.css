@@ -1,4 +1,35 @@
-
+center .row .glyphicon{
+    font-size: 200px;
+}
+.btn-pay{
+    position: relative;
+    bottom: -4px;
+}
+center strong{
+    font-size: 50px;
+}
+.panel-body strong{
+    font-size: 20px;
+}
+.order-button-gap{
+    margin-top: 10px;
+}
+.order-panel{
+    margin-top: 50px;
+}
+.panel-body .ok{
+    font-size: 14px;
+}
+.qty-gap{
+    margin-top: 2px;
+}
+.thumbnail .caption .cap-gap{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+input[type="number"] {
+   width:50px;
+}
 .caption .btn-cart{
     color: white;
 }
@@ -39,7 +70,18 @@
     margin-bottom: 15px;
 }
 .features .cart{
-    font-size: 28px;
+    font-size: 30px;
+    color: black;
+}
+.features .hidden-xs #button-cart{
+    margin: 5px;
+    margin-right: 80px;
+    padding: 2px 7px;
+}
+.features .hidden-xs strong{
+    font-size: 15px;
+    position: relative;
+    top: -7px;
 }
 .main{
     background-color: white;
@@ -63,11 +105,7 @@
     width: auto;
     margin-bottom: 10px;
 }
-.cart{
-    color: black;
-    margin-top: 10px;
-    margin-right: 15px;
-}
+
 ul.sdt_menu{
 	margin:0;
 	padding:0;

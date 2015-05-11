@@ -8,17 +8,17 @@
             $link = mysql_connect("127.0.0.1","armst0910","armsozk38");
             mysql_select_db("db_camera",$link);
         }
-        public function insertDB(){
+        public function insertDB($queryDB){
             $this->queryDB = $queryDB;
-            $result = mysql_query($this->queryDB);
+            return  mysql_query($this->queryDB);
         }
-        public function deleteDB(){
+        public function deleteDB($queryDB){
             $this->queryDB = $queryDB;
-            $result = mysql_query($this->queryDB);
+            return  mysql_query($this->queryDB);
         }
-        public function updateDB(){
+        public function updateDB($queryDB){
             $this->queryDB = $queryDB;
-            $result = mysql_query($this->queryDB);
+            return  mysql_query($this->queryDB);
         }
         public function getQuery($queryDB){
             $this->queryDB = $queryDB;

@@ -1,14 +1,37 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-      <?php
-        session_start();
-        if(!isset($_SESSION['cart'])){
-            $_SESSION['cart'] = array();
-            $_SESSION['total'] = 0;
-            $_SESSION['price'] = 0;
-        }
-      ?>
+        <?php
+            session_start();
+            include("assets/db.php");
+            $db = new Database();
+            $db->createDB();
+            $query = "select pd_id,pd_name,pd_price,pd_image,sr_id 
+                        from tbl_product
+                        where pd_id ='".$_POST['order']."';";
+            $result = $db->getQuery($query);
+            $row = mysql_fetch_array($result);
+            $updateQuery = "update tbl_product
+                            set sell_qty = sell_qty+1,pd_qty = pd_qty-1 
+                            where pd_id = '".$_POST['order']."';";
+            $count = count($_SESSION['cart']);
+            $_SESSION['total']++;
+            $_SESSION['price'] = $_SESSION['price']+$row['pd_price'];
+            $i = 0; $match = 1;
+            while($i < $count){
+                if(strcmp($_POST['order'],$_SESSION['cart'][$i]['id']) == 0){
+                    $_SESSION['cart'][$i]['qty'] = $_SESSION['cart'][$i]['qty']+1;
+                    $_SESSION['cart'][$i]['price'] = $_SESSION['cart'][$i]['price'] + $row['pd_price'];
+                    $match = 0;
+                }
+                $i++;
+            }
+            if($match == 1){
+                $itemInCart = array('id'=>$row['pd_id'],'name'=>$row['pd_name']
+                            ,'qty'=>1,'price'=>$row['pd_price']);
+                array_push($_SESSION['cart'],$itemInCart);
+            }
+        ?>
     	<title>Camera World</title>
         <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width , initial-scale=1.0">
@@ -88,46 +111,20 @@
                     </div>
 		              <div class="box categories-box" id="categories">
                             <p class="text-center"><strong>CATEGORIES</strong></p>
-                            <a href="index.php?modelGrade=gd_001" data-parent="#categories" aria-expanded="true" class="list-group-item active">
-                                <strong>JAPAN GRADE</strong><span class="badge">0</span>
-                            </a>
+                            <div data-parent="#categories" aria-expanded="true" class="list-group-item active">Digital Camera<span class="badge">0</span></div>
                             <div id="digital_camera" class="sublinks">
                                 <div class="list-group">
-                                    <a href="index.php?model=sr001&grade=gd_001" class="list-group-item">GUNDAM SEED</a>
-                                    <a href="index.php?model=sr002&grade=gd_001" class="list-group-item">GUNDAM SEED DESTINY</a>
-                                    <a href="index.php?model=sr003&grade=gd_001" class="list-group-item">GUNDAM 00</a>
+                                    <a href="index.php?product=cannon" class="list-group-item">CANNON</a>
+                                    <a href="index.php?product=nikon" class="list-group-item">NIKON</a>
+                                    <a href="index.php?product=olympus" class="list-group-item">OLYMPUS</a>
+                                    <a href="index.php?product=sony" class="list-group-item">SONY</a>
                                 </div>
                             </div>
-                            <a href="index.php?modelGrade=gd_002" data-parent="#categories" aria-expanded="true" class="list-group-item active">
-                                <strong>CHINA GRADE</strong><span class="badge">0</span>
-                            </a>
-                            <div id="digital_camera" class="sublinks">
-                                <div class="list-group">
-                                    <a href="index.php?model=sr004&grade=gd_002" class="list-group-item">GUNDAM SEED</a>
-                                    <a href="index.php?model=sr005&grade=gd_002" class="list-group-item">GUNDAM SEED DESTINY</a>
-                                    <a href="index.php?model=sr006&grade=gd_002" class="list-group-item">GUNDAM 00</a>
-                                </div>
-                            </div>
-                    </div>
+                        </div>
                 </div>
             
                 <div class="col-md-9 col-sm-12 col-xs-12 main">
-                    <?php
-                        if(isset($_GET['model']) && isset($_GET['grade'])){
-                            include("assets/model_gundam.php");
-                        }
-                        else if(isset($_GET['modelGrade'])){
-                            include("assets/model_grade.php");
-                        }
-                        elseif(isset($_POST['search'])){
-                            include("assets/search.php");
-                        }
-                        elseif(isset($_POST['order'])){
-                            include("assets/order.php");
-                        }
-                        else
-                            include("assets/main.php");
-                    ?>
+                    <?php include("assets/order_item.php");?>
                 </div>
         </div>
     </div><!--end of container content -->

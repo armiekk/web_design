@@ -1,14 +1,13 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-      <?php
-        session_start();
-        if(!isset($_SESSION['cart'])){
-            $_SESSION['cart'] = array();
-            $_SESSION['total'] = 0;
-            $_SESSION['price'] = 0;
-        }
-      ?>
+        <?php
+            session_start();
+            include("assets/db.php");
+            $db = new Database();
+            $db->createDB();
+            
+        ?>
     	<title>Camera World</title>
         <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width , initial-scale=1.0">
@@ -44,19 +43,8 @@
 		        <span class="icon-bar"></span>
 		      </button>
 		      <a class="navbar-brand" href="index.php">KM CAMERA</a>
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#cart-collapse">
-		          <span class="sr-only">cart navigation</span>
-		          <a href="#" class="glyphicon glyphicon-shopping-cart pull-right"></a>
-		      </button>
-		    </div>
-            <div class="hidden-xs">
-                <a type="button" id="button-cart" href="assets/cart.php" class="btn btn-default pull-right" 
-                   data-toggle="modal" data-target="#cart">
-                    <span class="glyphicon glyphicon-shopping-cart cart"></span>
-                    <strong class="badge"><?php echo $_SESSION['total'];?> item</strong>
-                </a>
             </div>
-		    <!-- Collect the nav links, forms, and other content for toggling -->
+            <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="navbar-collapse">
 		      <ul class="nav navbar-nav">
 		        <li><a href="#">Product</a></li>
@@ -68,13 +56,7 @@
 		</nav>
         
         <div class="container"><!-- container for content -->
-            <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                    </div>
-                </div>
-            </div>
-		  	<div class="row gap">
+            <div class="row gap">
 		  		<div class="col-md-3 col-sm-12 col-xs-12 side-gap">
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -112,22 +94,7 @@
                 </div>
             
                 <div class="col-md-9 col-sm-12 col-xs-12 main">
-                    <?php
-                        if(isset($_GET['model']) && isset($_GET['grade'])){
-                            include("assets/model_gundam.php");
-                        }
-                        else if(isset($_GET['modelGrade'])){
-                            include("assets/model_grade.php");
-                        }
-                        elseif(isset($_POST['search'])){
-                            include("assets/search.php");
-                        }
-                        elseif(isset($_POST['order'])){
-                            include("assets/order.php");
-                        }
-                        else
-                            include("assets/main.php");
-                    ?>
+                    <?php include("assets/editCart.php");?>
                 </div>
         </div>
     </div><!--end of container content -->

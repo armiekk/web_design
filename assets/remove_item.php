@@ -1,0 +1,27 @@
+<?php
+    session_start();
+    include("db.php");
+    $db = new Database();
+    $db->createDB();
+    $query = "select pd_id,pd_name,pd_price,pd_image,sr_id,sell_qty 
+                        from tbl_product
+                        where pd_id ='".$_POST['pd_id']."';";
+    $result = $db->getQuery($query);
+    $row = mysql_fetch_array($result);
+    $updateQuery = "update tbl_product
+                    set pd_qty = pd_qty+sell_qty,sell_qty = sell_qty-".$_POST['pd_qty']."
+                    where pd_id = '".$_POST['pd_id']."';";
+    mysql_query($updateQuery);
+?>
+<div class="show">
+    <div class="panel panel-default">
+        <div class="panel-body">
+           <?php echo "remove ".$row['pd_name']."(".$row['sell_qty'].") from your cart.";?>
+        </div>
+    </div>
+</div>
+<?php
+    $i = $_POST['index'];
+    unset($_SESSION['cart'][$i]);
+    $db->closeDB();
+?>

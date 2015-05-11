@@ -1,14 +1,13 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-      <?php
-        session_start();
-        if(!isset($_SESSION['cart'])){
-            $_SESSION['cart'] = array();
-            $_SESSION['total'] = 0;
-            $_SESSION['price'] = 0;
-        }
-      ?>
+        <?php
+            session_start();
+            include("assets/db.php");
+            $db = new Database();
+            $db->createDB();
+            
+        ?>
     	<title>Camera World</title>
         <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width , initial-scale=1.0">
@@ -112,22 +111,7 @@
                 </div>
             
                 <div class="col-md-9 col-sm-12 col-xs-12 main">
-                    <?php
-                        if(isset($_GET['model']) && isset($_GET['grade'])){
-                            include("assets/model_gundam.php");
-                        }
-                        else if(isset($_GET['modelGrade'])){
-                            include("assets/model_grade.php");
-                        }
-                        elseif(isset($_POST['search'])){
-                            include("assets/search.php");
-                        }
-                        elseif(isset($_POST['order'])){
-                            include("assets/order.php");
-                        }
-                        else
-                            include("assets/main.php");
-                    ?>
+                    <?php include("assets/order_checkout.php");?>
                 </div>
         </div>
     </div><!--end of container content -->
