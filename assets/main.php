@@ -11,7 +11,7 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active img-box">
-                    <img class="img-responsive" src="http://i1153.photobucket.com/albums/p512/armst1993/web%20programming/Carousel/cannon-Carousel.jpg" alt="cannon">
+                    <img class="img-responsive" src="pic/slideShow/banner1.jpg" alt="show1" >
                     <div class="carousel-caption">
                        
                     </div>
@@ -49,7 +49,7 @@
         <div class="row main-item-header"><!-- product header -->
             <div class="col-md-12">
                 <div class="product-header pull-left">
-                    CANNON
+                    JAPAN GRADE
                 </div>
                 <div class="more-button"> 
                     <a href="index.php?product=cannon" class="btn btn-primary pull-right"><strong>more</strong><span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -67,7 +67,7 @@
                         where tbl_series.gd_id = 'gd_001'";
             $result = $db->getQuery($query);
             $i1 = 1;
-            while($i1 <= 3){
+            while($i1 <= 6){
                 $row = mysql_fetch_array($result);
                 if($row['pd_qty'] > 0){
                     $button = "<form method='post' action='order.php'>
@@ -82,7 +82,7 @@
                 }
                 echo "<div class='col-md-4 col-sm-6 col-xs-12'>
                                 <div class='thumbnail' id='thumbnail-bg' style='height:330px;'>
-                                    <img src='pic/".$row['pd_image']."'>
+                                    <img src='pic/".$row['pd_image']."' style='height:150px;'>
                                     <div class='caption'>".
                                     "   <div class='row cap-gap'> 
                                             <div class='col-md-12 col-sm-12 col-xs-12'>

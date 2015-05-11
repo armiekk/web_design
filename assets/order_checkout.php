@@ -34,17 +34,20 @@
                     </tbody>
                 </table>
                 <div class="row">
-                    <div class="col-sm-12 col-sm-12 col-xs-12">
-                        <strong class="pull-left">Total item : 
-                            <i><?php echo $_SESSION['total'];?></i>
-                        </strong>
+                    <div class="col-md-6 col-sm12 col-xs-12">
+                        <div class="col-sm-12 col-sm-12 col-xs-12">
+                            <strong class="pull-left">Total item : 
+                                <i><?php echo $_SESSION['total'];?></i>
+                            </strong>
+                        </div>
+                        <div class="col-sm-12 col-sm-12 col-xs-12">
+                            <strong class="pull-left">Total price : 
+                                <i><?php echo number_format($_SESSION['price']);?> ฿.</i>
+                            </strong>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 col-sm-12 col-xs-12">
-                        <strong class="pull-left">Total price : 
-                            <i><?php echo number_format($_SESSION['price']);?> ฿.</i>
-                        </strong>
+                    <div class="col-md-6 col-sm12 col-xs-12">
+                        <a href="edit_cart.php" class="btn btn-primary btn-lg">Edit Cart</a>
                     </div>
                 </div>
                 <br>

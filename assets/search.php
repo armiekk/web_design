@@ -23,8 +23,8 @@
                         </button>";
         }
         echo "<div class='col-md-4 col-sm-6 col-xs-12'>
-                        <div class='thumbnail' id='thumbnail-bg'>
-                            <img src='pic/".$row['pd_image']."'>
+                        <div class='thumbnail' id='thumbnail-bg' style='height:330px;'>
+                            <img src='pic/".$row['pd_image']."' style='height:150px;'>
                             <div class='caption'>".
                             "   <div class='row cap-gap'> 
                                     <div class='col-md-12 col-sm-12 col-xs-12'>

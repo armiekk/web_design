@@ -14,12 +14,13 @@
         <tbody>
     <?php
             $number = 0;
-            $maxItem = count($_SESSION['cart']);
+            $cart = array_values($_SESSION['cart']);
+            $maxItem = count($cart);
                 for($i = 0;$i < $maxItem;$i++){
-                    $id = $_SESSION['cart'][$i]['id'];
-                    $name = $_SESSION['cart'][$i]['name'];
-                    $qty = $_SESSION['cart'][$i]['qty'];
-                    $price = number_format($_SESSION['cart'][$i]['price']);
+                    $id = $cart[$i]['id'];
+                    $name = $cart[$i]['name'];
+                    $qty = $cart[$i]['qty'];
+                    $price = number_format($cart[$i]['price']);
                     echo "
                         <tr data-id='".$id."' data-qty='".$qty."' data-index='".$i."'>
                             <td><button class='btn btn-default btn-xs' id='remove-item' style='border-radius:500px;'>
@@ -35,25 +36,29 @@
     ?>  
         </tbody>
 </table>
-<div class="row">
-    <div class="col-sm-6 col-sm-12 col-xs-12">
+<div class="panel panel-default">
+    <div class="panel-body">
         <div class="row">
-            <div class="col-sm-12 col-sm-12 col-xs-12">  
-                <h3 class="pull-left">Total item : 
-                    <i><?php echo $_SESSION['total'];?></i>
-                </h3>
+            <div class="col-sm-6 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-sm-12 col-sm-12 col-xs-12">  
+                        <strong class="pull-left">Total item : 
+                            <i><?php echo $_SESSION['total'];?></i>
+                        </strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-sm-12 col-xs-12">
+                        <strong class="pull-left">Total price : 
+                            <i><?php echo number_format($_SESSION['price']);?> ฿.</i>
+                        </strong>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <a href="checkout.php" class="btn btn-success btn-lg">Checkout</a>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12 col-sm-12 col-xs-12">
-                <h3 class="pull-left">Total price : 
-                    <i><?php echo number_format($_SESSION['price']);?> ฿.</i>
-                </h3>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-sm-12 col-xs-12">
-        <a href="checkout.php" class="btn btn-success btn-lg" style="margin-top:30px;">Checkout</a>
     </div>
 </div>
 

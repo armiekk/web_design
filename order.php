@@ -66,7 +66,7 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="index.php">KM CAMERA</a>
+		      <a class="navbar-brand" href="index.php">GUNPLA SHOP</a>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#cart-collapse">
 		          <span class="sr-only">cart navigation</span>
 		          <a href="#" class="glyphicon glyphicon-shopping-cart pull-right"></a>
@@ -111,16 +111,29 @@
                     </div>
 		              <div class="box categories-box" id="categories">
                             <p class="text-center"><strong>CATEGORIES</strong></p>
-                            <div data-parent="#categories" aria-expanded="true" class="list-group-item active">Digital Camera<span class="badge">0</span></div>
+                            <a href="index.php?modelGrade=gd_001" data-parent="#categories" aria-expanded="true" class="list-group-item active">
+                                <strong>JAPAN GRADE</strong>
+                            </a>
                             <div id="digital_camera" class="sublinks">
                                 <div class="list-group">
-                                    <a href="index.php?product=cannon" class="list-group-item">CANNON</a>
-                                    <a href="index.php?product=nikon" class="list-group-item">NIKON</a>
-                                    <a href="index.php?product=olympus" class="list-group-item">OLYMPUS</a>
-                                    <a href="index.php?product=sony" class="list-group-item">SONY</a>
+                                    <a href="index.php?model=sr007&grade=gd_001" class="list-group-item">Gundam Build Fighters</a>
+                                    <a href="index.php?model=sr008&grade=gd_001" class="list-group-item">Gundam UC DESTINY</a>
+                                    <a href="index.php?model=sr009&grade=gd_001" class="list-group-item">Gundam W</a>
+                                    <a href="index.php?model=sr010&grade=gd_001" class="list-group-item">Reconguista in G</a>
+                                    <a href="index.php?model=sr011&grade=gd_001" class="list-group-item">Other Gundam</a>
                                 </div>
                             </div>
-                        </div>
+                            <a href="index.php?modelGrade=gd_002" data-parent="#categories" aria-expanded="true" class="list-group-item active">
+                                <strong>CHINA GRADE</strong>
+                            </a>
+                            <div id="digital_camera" class="sublinks">
+                                <div class="list-group">
+                                    <a href="index.php?model=sr004&grade=gd_002" class="list-group-item">GUNDAM SEED</a>
+                                    <a href="index.php?model=sr005&grade=gd_002" class="list-group-item">GUNDAM SEED DESTINY</a>
+                                    <a href="index.php?model=sr006&grade=gd_002" class="list-group-item">GUNDAM 00</a>
+                                </div>
+                            </div>
+                    </div>
                 </div>
             
                 <div class="col-md-9 col-sm-12 col-xs-12 main">
