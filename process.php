@@ -3,36 +3,34 @@
     <head>
         <?php
             session_start();
+            $_SESSION['price'] = $_SESSION['price']+$_POST['pk_size']+$_POST['shipping'];
             include("assets/db.php");
             $db = new Database();
             $db->createDB();
-            $query = "select pd_id,pd_name,pd_price,pd_image,sr_id,pd_qty 
-                        from tbl_product
-                        where pd_id ='".$_POST['order']."';";
-            $result = $db->getQuery($query);
-            $row = mysql_fetch_array($result);
-            $updateQuery = "update tbl_product
-                            set sell_qty = sell_qty+1,pd_qty = pd_qty-1 
-                            where pd_id = '".$_POST['order']."';";
-            $count = count($_SESSION['cart']);
-            $_SESSION['total']++;
-            $_SESSION['price'] = $_SESSION['price']+$row['pd_price'];
-            $i = 0; $match = 1;
-            while($i < $count){
-                if(strcmp($_POST['order'],$_SESSION['cart'][$i]['id']) == 0){
-                    $_SESSION['cart'][$i]['qty'] = $_SESSION['cart'][$i]['qty']+1;
-                    $_SESSION['cart'][$i]['price'] = $_SESSION['cart'][$i]['price'] + $row['pd_price'];
-                    $match = 0;
-                }
-                $i++;
-            }
-            if($match == 1){
-                $itemInCart = array('id'=>$row['pd_id'],'name'=>$row['pd_name']
-                            ,'qty'=>1,'price'=>$row['pd_price'],'qoh'=>$row['pd_qty']);
-                array_push($_SESSION['cart'],$itemInCart);
+            $add_customer = "insert into tbl_customer
+                            values('".$_POST['name']."',
+                                    '".$_POST['address']."',
+                                    '".$_POST['tel']."',
+                                    '".$_POST['zip_code']."',
+                                    '".$_POST['email']."')";
+            $db->getQuery($add_customer);
+            $getEmail = "select cus_email from tbl_customer where cus_email = '".$_POST['email']."'";
+            $email = mysql_fetch_array($db->getQuery($getEmail))or die("cannot get email");
+    
+            $updateOrder = "update tbl_order
+                            set box_size=".$_POST['pk_size'].",
+                                shipping_type=".$_POST['shipping'].",
+                                od_cost=".$_SESSION['price'].",
+                                cus_email='".$email['cus_email']."'"
+                            ."where od_id=".$_SESSION['order_id'];
+            $db->getQuery($updateOrder)or die("cannot add order");
+            for($i = 0;$i < count($_SESSION['cart']);$i++){
+                $addItem = "insert into tbl_order_item
+                            value(".$_SESSION['order_id'].",'".$_SESSION['cart'][$i]['id']."',".$_SESSION['cart'][$i]['qty'].")";
+                $db->getQuery($addItem)or die("cannot add item");
             }
         ?>
-    	<title>Camera World</title>
+    	<title>GUNPLA SHOP</title>
         <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width , initial-scale=1.0">
         <link rel="stylesheet" href="css/stylesheet.css" type="text/css" media="screen"/>
@@ -72,13 +70,6 @@
 		          <a href="#" class="glyphicon glyphicon-shopping-cart pull-right"></a>
 		      </button>
 		    </div>
-            <div class="hidden-xs">
-                <a type="button" id="button-cart" href="assets/cart.php" class="btn btn-default pull-right" 
-                   data-toggle="modal" data-target="#cart">
-                    <span class="glyphicon glyphicon-shopping-cart cart"></span>
-                    <strong class="badge"><?php echo $_SESSION['total'];?> item</strong>
-                </a>
-            </div>
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="navbar-collapse">
 		      <ul class="nav navbar-nav">
@@ -91,12 +82,6 @@
 		</nav>
         
         <div class="container"><!-- container for content -->
-            <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                    </div>
-                </div>
-            </div>
 		  	<div class="row gap">
 		  		<div class="col-md-3 col-sm-12 col-xs-12 side-gap">
                     <div class="row">
@@ -137,7 +122,17 @@
                 </div>
             
                 <div class="col-md-9 col-sm-12 col-xs-12 main">
-                    <?php include("assets/order_item.php");?>
+                    <div id="transaction" class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="panel-body">
+                                <div class="jumbotron">
+                                    <h1>PURCHASE SUCCESSFUL</h1>
+                                    <h3>ORDER ID : <?php echo "OD".$_SESSION['order_id']; ?></h3>
+                                </div>
+                                <?php session_destroy();?>
+                            </div>
+                        </div>
+                    </div>
                 </div>
         </div>
     </div><!--end of container content -->
@@ -158,10 +153,5 @@
 			</address>
 		</div>
 	</footer>
-        <script>
-            $('body').on('hidden.bs.modal',".modal", function () {
-                $(this).removeData('bs.modal');
-            });
-        </script>
     </body>
 </html>

@@ -13,7 +13,7 @@
             $row = mysql_fetch_array($db->getQuery($query));
         
     ?>
-        <form role="form" class="form-horizontal" method="post" action="#">
+        <form role="form" class="form-horizontal" method="post" action="transaction.php">
         <div class="form-group">
             <label class="control-label col-sm-2" for="name">Full Name :</label>
                 <div class="col-sm-10">
@@ -45,9 +45,45 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-2" for="address">Zip Code :</label>
+            <label class="control-label col-sm-2" for="zip_code">Zip Code :</label>
             <div class="col-sm-10">
-                <input class="form-control" id="zip_post" placeholder="Zip post" name="zip_post" style="width:80px;" value="<?php echo $row['cus_postal_code'];?>">
+                <input class="form-control" id="zip_post" placeholder="Zip Code" name="zip_code" style="width:80px;" value="<?php echo $row['cus_postal_code'];?>">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="Package-size">Package Size :</label>
+                <div class="col-md-10">
+                    <div class="thai-post pull-left">
+                        <input type="radio" name="pk_size" value="0">
+                        <img src="pic/shipping/package.png" style="width:20px;height:20px;">
+                        <span> 0 ฿. Small.</span>
+                        <input type="radio" name="pk_size" value="50">
+                        <img src="pic/shipping/package.png" style="width:30px;height:30px;">
+                        <span> 50 ฿. Medium. </span>
+                        <input type="radio" name="pk_size" value="100">
+                        <img src="pic/shipping/package.png" style="width:40px;height:40px;">
+                        <span> 100 ฿. Large. </span>
+                    </div>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="shipping">Shipping :</label>
+                <div class="col-md-10">
+                    <div class="thai-post pull-left">
+                        <input type="radio" name="shipping" value="0">
+                        <img src="pic/shipping/ThailandPost.jpg" style="width:100px;height:50px;">
+                        <span> Free Shipping. </span>
+                    </div>
+                    <div class="thai-post">
+                        <input type="radio" name="shipping" value="100">
+                        <img src="pic/shipping/ems.jpg" style="width:100px;height:50px;">
+                        <span> 100 ฿ for EMS Shipping. </span>
+                    </div>
+                </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-primary btn-lg pull-left">SUBMIT</button>
             </div>
         </div>
     </form>

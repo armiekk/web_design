@@ -11,6 +11,9 @@
         echo "There was no result !!";
     }
     else{
+        echo    "<div class='page-header'>
+                    <h1>Search for '".$searchq."'</h1>
+                </div>";
         while($row = mysql_fetch_array($result)){
         if($row['pd_qty'] > 0){
             $button = "<form method='post' action='order.php'>

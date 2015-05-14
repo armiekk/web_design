@@ -1,13 +1,16 @@
 <?php
-        include('assets/db.php');
-        $db = new Database();
-        $db->createDB();
+        
         $query = "  select tbl_series.gd_id,tbl_series.sr_id,tbl_product.pd_name,tbl_product.pd_id,
                                 tbl_product.pd_name,tbl_product.pd_qty,tbl_product.pd_price,tbl_product.pd_image
                         from tbl_product
                         left outer join tbl_series on tbl_product.sr_id = tbl_series.sr_id
                         where tbl_series.sr_id = '".$_GET['model']."' and tbl_series.gd_id = '".$_GET['grade']."'";
         $result = $db->getQuery($query);
+        $grade = "select sr_detail from tbl_series where sr_id = '".$_GET['model']."'";
+        $qGrade = mysql_fetch_array(mysql_query($grade));
+        echo    "<div class='page-header'>
+                    <h1>".$qGrade['sr_detail']."</h1>
+                </div>";
         while($row = mysql_fetch_array($result)){
                 if($row['pd_qty'] > 0){
                     $button = "<form method='post' action='order.php'>

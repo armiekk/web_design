@@ -3,10 +3,19 @@
     <head>
       <?php
         session_start();
+        include("assets/db.php");
+        $db = new Database();
+        $db->createDB();
         if(!isset($_SESSION['cart'])){
             $_SESSION['cart'] = array();
             $_SESSION['total'] = 0;
             $_SESSION['price'] = 0;
+        }
+        if(!isset($_SESSION['order_id'])){
+            $setOrderID = "insert into tbl_order(od_id) 
+                            VALUES (NULL)";
+            $db->getQuery($setOrderID)or die("cannot set orderID");
+            $_SESSION['order_id'] = mysql_insert_id();
         }
       ?>
     	<title>GUNPLA SHOP</title>
@@ -137,15 +146,15 @@
 	  	<div class="row">
 	  		<address>
 			  	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-			  			thank u
+			  			
 			  	</div>
 
 				  	<div class="col-lg-6 col-md-4 col-sm-4 col-xs-4" align=center>
-				  			lardkrabang 1111
+				  			
 				  	</div>
 
 			  	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-			  			facebook:f
+			  			
 			  	</div>
 			</address>
 		</div>

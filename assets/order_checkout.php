@@ -55,23 +55,23 @@
                     <div class="col-sm-12">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <div class="col-sm-4">
+                                <div class="col-md-4">
                                     <strong>PAYMENT AND SHIPPING</strong>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-md-4">
                                     <button id="old-cus" class="btn btn-lg btn-success btn-pay">Old Customer</button>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-md-4">
                                     <button id="new-cus" class="btn btn-lg btn-success btn-pay">New Customer</button>
                                 </div>
                             </div>
                         </div>
                         <div class="panel panel-default" id="new-user" style="display:none;">
                             <div class="panel-body">
-                                <form role="form" class="form-horizontal" method="post" action="#">
+                                <form role="form" class="form-horizontal" method="post" action="transaction.php">
                                     <div class="form-group">
                                         <label class="control-label col-sm-2" for="name">Full Name :</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-md-10">
                                             <input type="text" class="form-control" 
                                                    id="name" placeholder="Enter Full Name"
                                                     name="name" style="width:300px;">
@@ -79,7 +79,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-sm-2" for="tel">E-mail :</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-md-10">
                                             <input type="email" class="form-control" 
                                                    id="email" placeholder="Enter E-mail"
                                                     name="email" style="width:250px;">
@@ -87,7 +87,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-sm-2" for="tel">Tel :</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-md-10">
                                             <input type="tel" class="form-control" 
                                                    id="tel" placeholder="Enter Phone Number"
                                                     name="tel" style="width:160px;">
@@ -95,15 +95,51 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-sm-2" for="address">Address :</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" id="address" placeholder="Enter Address" name="address" style="width:400px;">
+                                            <div class="col-md-10">
+                                                <textarea class="form-control" name="address" id="address" cols="5" style="width:400px;"></textarea>
                                             </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-sm-2" for="address">Zip Code :</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" id="zip_post" placeholder="Zip post" name="zip_post" style="width:80px;">
+                                        <label class="control-label col-sm-2" for="zipCode">Zip Code :</label>
+                                            <div class="col-md-10">
+                                                <input type="text" class="form-control" id="zip_code" placeholder="Zip post" name="zip_code" style="width:80px;">
                                             </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="Package-size">Package Size :</label>
+                                            <div class="col-md-10">
+                                                <div class="thai-post pull-left">
+                                                    <input type="radio" name="pk_size" value="0">
+                                                    <img src="pic/shipping/package.png" style="width:20px;height:20px;">
+                                                    <span> 0 ฿. Small.</span>
+                                                    <input type="radio" name="pk_size" value="50">
+                                                    <img src="pic/shipping/package.png" style="width:30px;height:30px;">
+                                                    <span> 50 ฿. Medium. </span>
+                                                    <input type="radio" name="pk_size" value="100">
+                                                    <img src="pic/shipping/package.png" style="width:40px;height:40px;">
+                                                    <span> 100 ฿. Large. </span>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="shipping">Shipping :</label>
+                                            <div class="col-md-10">
+                                                <div class="thai-post pull-left">
+                                                    <input type="radio" name="shipping" value="0">
+                                                    <img src="pic/shipping/ThailandPost.jpg" style="width:100px;height:50px;">
+                                                    <span> Free Shipping. </span>
+                                                </div>
+                                                <div class="thai-post">
+                                                    <input type="radio" name="shipping" value="100">
+                                                    <img src="pic/shipping/ems.jpg" style="width:100px;height:50px;">
+                                                    <span> 100 ฿ for EMS Shipping. </span>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <button type="submit" class="btn btn-primary btn-lg pull-left">SUBMIT</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>

@@ -20,15 +20,27 @@
                     $id = $cart[$i]['id'];
                     $name = $cart[$i]['name'];
                     $qty = $cart[$i]['qty'];
+                    $qoh = $cart[$i]['qoh'];
                     $price = number_format($cart[$i]['price']);
                     echo "
-                        <tr data-id='".$id."' data-qty='".$qty."' data-index='".$i."'>
-                            <td><button class='btn btn-default btn-xs' id='remove-item' style='border-radius:500px;'>
-                                    <span class='glyphicon glyphicon-remove'></span>
+                        <tr data-id='".$id."' data-qty='".$qty."' data-price='".$cart[$i]['price']."'>
+                            <td><button class='btn btn-danger btn-xs' id='remove-item' style='border-radius:500px;'>
+                                    <i class='glyphicon glyphicon-remove'></i>
                                 </button>
                             </td>
-                            <td>".$name."</td>
-                            <td>".$qty."</td>
+                            <td>".$name."<br>
+                                <span>on stock : ".$qoh."</span>
+                            </td>
+                            <td>
+                                <form class='form-inline' role='form'>
+                                    <div class='form-group'>
+                                        <input type='number' id='order_qty' style='width:60px;' class='form-control' value='".$qty."' min='1' max='".$qoh."'>
+                                        <button class='btn btn-success btn-xs pull-right' id='addQty' style='border-radius:100px;margin-left:5px;margin-top:5px;'>
+                                            <i class='glyphicon glyphicon-ok'></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </td>
                             <td>".$price." ฿.</td>
                         </tr>
                     ";
@@ -39,9 +51,10 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="row">
-            <div class="col-sm-6 col-sm-12 col-xs-12">
+            <div class="update"></div>
+            <div class="col-md-6 col-sm-12 col-xs-12" id="total">
                 <div class="row">
-                    <div class="col-sm-12 col-sm-12 col-xs-12">  
+                    <div class="col-md-12 col-sm-12 col-xs-12">  
                         <strong class="pull-left">Total item : 
                             <i><?php echo $_SESSION['total'];?></i>
                         </strong>
@@ -63,18 +76,48 @@
 </div>
 
 <script>
-    $('tbody').on('click','#remove-item',function(){
+$(document).ready(function(){
+    $('tbody').on('click','#remove-item',function (){
         $.ajax({
             type: 'POST',
             url: 'assets/remove_item.php',
+            data: { "pd_id": $(this).closest("tr").data("id"),
+                    "pd_qty": $(this).closest("tr").data("qty")
+                  },
             success: function(response){
                 $('.show').html(response).slideDown();
-            },
-            data: { "pd_id": $(this).closest("tr").data("id"),
-                    "pd_qty": $(this).closest("tr").data("qty"),
-                    "index": $(this).closest("tr").data("index")}
+                $("table").trigger("chosen:updated");
+            }
         });
         $(this).closest("tr").remove();
-        var pd_id =  $(this).closest("tr").data("id");
     });
+    
+    
+    $('tbody').on('click','#remove-item',function (){
+        $.ajax({
+            type: 'POST',
+            url: 'assets/update.php',
+            success: function(response){
+                $('div.update').html(response).show();
+            }
+        });
+        $('div#total').remove();
+    });
+    
+    
+    $('tbody').on('click','#addQty',function (){
+        $.ajax({
+            type: 'POST',
+            url: 'assets/update_order.php',
+            data:{  pd_id: $(this).closest("tr").data("id"),
+                    pd_qty: $(this).closest("tr").find("input#order_qty").val()
+                 },
+            success: function(response){
+                $('div.update').html(response).show();
+            }
+        });
+        $('div#total').remove();
+    });
+    
+});
 </script>

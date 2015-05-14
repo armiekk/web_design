@@ -21,9 +21,13 @@
     </div>
 </div>
 <?php
-    $i = $_POST['index'];
-    unset($_SESSION['cart'][$i]);
-    $_SESSION['cart'] = array_values($_SESSION['cart']);
+    $cart = array_values($_SESSION['cart']);
+    for($i = 0;$i < count($cart);$i++){
+        if($cart[$i]['id'] == $_POST['pd_id']){
+            unset($cart[$i]);
+            $_SESSION['cart'] = array_values($cart);
+        }
+    }
     $_SESSION['total'] = $_SESSION['total']-$_POST['pd_qty'];
     $_SESSION['price'] = $_SESSION['price']-($_POST['pd_qty']*$row['pd_price']);
     $db->closeDB();

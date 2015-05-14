@@ -3,10 +3,6 @@
     <head>
         <?php
             session_start();
-            include("assets/db.php");
-            $db = new Database();
-            $db->createDB();
-            
         ?>
     	<title>GUNPLA SHOP</title>
         <meta charset="utf-8">

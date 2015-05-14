@@ -17,13 +17,13 @@
                     </div>
                 </div>
                 <div class="item img-box">
-                    <img class="img-responsive" src="http://i1153.photobucket.com/albums/p512/armst1993/web%20programming/Carousel/D7100_Carousel.jpg" alt="nikon">
+                    <img class="img-responsive" src="pic/slideShow/banner2.jpg" alt="show2" >
                     <div class="carousel-caption">
                     
                     </div>
                 </div>
                 <div class="item img-box">
-                    <img class="img-responsive" src="http://i1153.photobucket.com/albums/p512/armst1993/web%20programming/Carousel/sony_Carousel.jpg" alt="nikon">
+                    <img class="img-responsive" src="pic/slideShow/banner3.jpg" alt="show3" >
                     <div class="carousel-caption">
                     
                     </div>
@@ -57,9 +57,6 @@
             </div>
         </div><!-- end of product header -->
 <?php
-            include('assets/db.php');
-            $db = new Database();
-            $db->createDB();
             $query = "  select tbl_series.gd_id,tbl_series.sr_id,tbl_product.pd_name,tbl_product.pd_id,
                                 tbl_product.pd_name,tbl_product.pd_qty,tbl_product.pd_price,tbl_product.pd_image
                         from tbl_product

@@ -6,7 +6,7 @@
         }
         public function createDB(){
             $link = mysql_connect("127.0.0.1","armst0910","armsozk38");
-            mysql_select_db("db_camera",$link);
+            mysql_select_db("gunpla_ecommerce",$link);
         }
         public function insertDB($queryDB){
             $this->queryDB = $queryDB;
