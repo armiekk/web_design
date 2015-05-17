@@ -21,13 +21,16 @@
                     include("assets/admin/order_list.php");
                     break;
                 case 'add_product':
-                    include("manage_product/add_product.html");
+                    include("manage_product/add_page.php");
                     break;
                 case 'manage_product':
                     include("assets/admin/manage_product.php");
                     break;
             }
         }
+        elseif(isset($_GET['sort'])){
+            include("assets/admin/manage_product.php");
+        }       
         else{
             include("assets/admin/order_list.php");
         }

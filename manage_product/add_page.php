@@ -1,4 +1,14 @@
-    <div class="page-header">
+<?php
+    include("assets/db.php");
+    $db = new Database();
+    $db->createDB();
+    $gradeQ = "select gd_id from tbl_grade order by gd_id";
+    $seriesQ = "select sr_id from tbl_series order by sr_id";
+    $gradeR = mysql_query($gradeQ);
+    $seriesR = mysql_query($seriesQ);
+?>    
+
+<div class="page-header">
         <h1>ADD GRADE</h1>
     </div>
     <div class="addGrade"></div>
@@ -47,7 +57,13 @@
         <div class="form-group">
             <label class="control-label col-md-2" for="gd_id">Model Grade :</label>
             <div class="col-md-9">
-	           <input type="text" class="form-control" name="gd_id">
+	           <select class="form-control" name="gd_id">
+                    <?php
+                        while($row = mysql_fetch_array($gradeR)){
+                            echo "<option value='".$row['gd_id']."'>".$row['gd_id']."</option>";
+                        }
+                   ?>
+                </select>
             </div>
         </div>
         <div class="form-group">
@@ -76,13 +92,13 @@
         <div class="form-group">
             <label class="control-label col-md-2" for="pd_price">Product Price :</label>
             <div class="col-md-9">
-	           <input type="number" class="form-control" name="pd_price" style="width:120px;">
+	           <input type="number" class="form-control" name="pd_price" min="1" style="width:120px;">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2" for="pd_qty">Product Qty :</label>
             <div class="col-md-9">
-	           <input type="number" class="form-control" name="pd_qty" style="width:70px;">
+	           <input type="number" class="form-control" name="pd_qty" min="1" style="width:70px;">
             </div>
         </div>
         <div class="form-group">
@@ -94,7 +110,13 @@
         <div class="form-group">
             <label class="control-label col-md-2" for="sr_id">Series ID :</label>
             <div class="col-md-9">
-	           <input type="text" class="form-control" name="sr_id">
+	           <select class="form-control" name="sr_id">
+                    <?php
+                        while($row = mysql_fetch_array($seriesR)){
+                            echo "<option value='".$row['sr_id']."'>".$row['sr_id']."</option>";
+                        }
+                   ?>
+                </select>
             </div>
         </div>
         <div class="form-group">
@@ -109,6 +131,7 @@
             </div>
         </div>
 	</form>
+<?php $db->closeDB(); ?>
 <script>
     $(document).ready(function (){
         $('form#addGrade').on('click','#add_grade',function(event){

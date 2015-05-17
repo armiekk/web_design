@@ -141,23 +141,7 @@
                 </div>
         </div>
     </div><!--end of container content -->
-	<footer class="container">
-	  	<div class="row">
-	  		<address>
-			  	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-			  			thank u
-			  	</div>
-
-				  	<div class="col-lg-6 col-md-4 col-sm-4 col-xs-4" align=center>
-				  			lardkrabang 1111
-				  	</div>
-
-			  	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-			  			facebook:f
-			  	</div>
-			</address>
-		</div>
-	</footer>
+	
         <script>
             $('body').on('hidden.bs.modal',".modal", function () {
                 $(this).removeData('bs.modal');
